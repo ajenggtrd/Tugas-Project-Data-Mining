@@ -1191,6 +1191,15 @@ plot_3d_clusters(y_pred,"Agglomerative")
     
 ![png](output_44_1.png)
 
+1. Sumbu x mewakili Frequency of purchases, berkisar antara 0 hingga 6.
+2. Sumbu y mewakili Age, yang berkisar antara 20 hingga 100.
+3. Sumbu z mewakili Purchases Amount, yang berkisar antara 30 hingga 100.
+
+Dari plot tersebut, kita dapat mengamati hal-hal berikut:
+- Cluster 0 (titik biru), terdiri dari pelanggan yang sering melakukan pembelian (nilai x tinggi) dan relatif muda (nilai y rendah). Mereka juga cenderung memiliki Jumlah Pembelian yang lebih rendah (nilai z yang lebih rendah).
+- Cluster 1 (titik merah), memiliki pelanggan yang melakukan pembelian dalam jumlah sedang (nilai x sedang) dan berusia paruh baya (nilai y sedang). Mereka cenderung memiliki Jumlah Pembelian yang moderat (nilai z sedang).
+- Cluster 2 (titik hijau), terdiri dari pelanggan yang jarang melakukan pembelian (nilai x rendah) dan berusia lebih tua (nilai y tinggi). Mereka cenderung memiliki Jumlah Pembelian yang lebih tinggi (nilai z yang lebih tinggi).
+- 
 #### 4.3 Regression
 ##### 4.3.1 Melihat distribusi data
 ```python
