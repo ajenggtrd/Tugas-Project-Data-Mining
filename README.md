@@ -787,7 +787,7 @@ plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Grafik%20Garis%20Rata-Rata%20Usia%20Berdasarkan%20Frequency%20of%20Purchases.png">
 
-    
+Terdapat kesalahan pada judul grafik yang seharusnya adalah "Grafik Garis Rata-rata Frekuensi Pembelian Berdasarkan Usia".
 
 
 
@@ -827,6 +827,7 @@ plt.title('Jumlah Pelanggan berdasarkan Frekuensi Pembelian')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Frekuensi%20Pembelian.png">
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Jumlah Pelanggan".
 
 ```python
 plt.figure(figsize=(10, 6))
@@ -838,7 +839,7 @@ plt.title('Total Pembelian berdasarkan Frekuensi Pembelian')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Total%20Pembelian%20berdasarkan%20Frekuensi%20Pembelian.png">
-
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Total Pembelian (USD))".
 
 ```python
 plt.figure(figsize=(10, 6))
@@ -864,7 +865,7 @@ plt.title('Jumlah Pelanggan berdasarkan Status Langganan')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Status%20Langganan.png">
-
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Status Langganan berdasarkan Jumlah Pelanggan".
 ```python
 plt.figure(figsize=(10, 6))
 sns.histplot(data=data, x='Age', hue='Subscription Status', multiple='stack', palette='Set2')
