@@ -209,207 +209,7 @@ data['Frequency of Purchases'] = data['Frequency of Purchases'].replace({'Bi-Wee
 ```python
 data2 = data.copy()
 ```
-### 4. Modeling
-#### 4.1 Visualisasi
-```python
-grouped_data = data.groupby('Frequency of Purchases')['Age'].mean().reset_index()
-```
-
-
-```python
-plt.figure(figsize=(10, 5))
-plt.plot(grouped_data['Frequency of Purchases'], grouped_data['Age'], marker='o', linestyle='-', color='b', label='Nilai')
-plt.xlabel('Frequency of Purchases')
-plt.ylabel('Average Age')
-plt.title('Grafik Garis Rata-Rata Usia Berdasarkan Frequency of Purchases')
-plt.legend()
-plt.grid(True)
-plt.show()
-
-```
-<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Grafik%20Garis%20Rata-Rata%20Usia%20Berdasarkan%20Frequency%20of%20Purchases.png">
-
-    
-
-
-
-```python
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=data, x='Frequency of Purchases', y='Previous Purchases', marker='o', ci=None)
-plt.xlabel('Frequency of Purchases')
-plt.ylabel('Previous Purchases')
-plt.title('Hubungan Frekuensi Pembelian dengan Jumlah Pembelian Sebelumnya')
-plt.xticks(rotation=45)
-plt.show()
-```
-
-    C:\Users\LENOVO\AppData\Local\Temp\ipykernel_16976\136495084.py:2: FutureWarning: 
-    
-    The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
-    
-      sns.lineplot(data=data, x='Frequency of Purchases', y='Previous Purchases', marker='o', ci=None)
-    
-
-
-    
-![png](output_16_1.png)
-    
-```python
-plt.figure(figsize=(8, 6))
-data['Frequency of Purchases'].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['lightgreen', 'lightblue', 'lightpink', 'lightyellow', 'lightcoral'])
-plt.title('Proporsi Frekuensi Pembelian')
-plt.ylabel('')
-plt.show()
-```
-
-
-    
-![png](output_17_0.png)
-```python
-plt.figure(figsize=(8, 6))
-sns.countplot(data=data, x='Frequency of Purchases', palette='pastel')
-plt.xlabel('Frekuensi Pembelian')
-plt.ylabel('Jumlah Pelanggan')
-plt.title('Jumlah Pelanggan berdasarkan Frekuensi Pembelian')
-plt.show()
-```
-
-
-    
-![png](output_18_0.png)
-```python
-plt.figure(figsize=(10, 6))
-total_purchase = data.groupby('Frequency of Purchases')['Purchase Amount (USD)'].sum().reset_index()
-sns.barplot(data=total_purchase, x='Frequency of Purchases', y='Purchase Amount (USD)', palette='Set2')
-plt.xlabel('Frekuensi Pembelian')
-plt.ylabel('Total Pembelian (USD)')
-plt.title('Total Pembelian berdasarkan Frekuensi Pembelian')
-plt.show()
-```
-
-
-    
-![png](output_19_0.png)
-
-```python
-plt.figure(figsize=(10, 6))
-total_purchase = data.groupby('Frequency of Purchases')['Purchase Amount (USD)'].sum().reset_index()
-sns.barplot(data=total_purchase, x='Frequency of Purchases', y='Purchase Amount (USD)', palette='Set2')
-plt.xlabel('Frekuensi Pembelian')
-plt.ylabel('Total Pembelian (USD)')
-plt.title('Total Pembelian berdasarkan Frekuensi Pembelian')
-plt.show()
-```
-
-
-    
-![png](output_20_0.png)
-    
-```python
-plt.figure(figsize=(10, 6))
-sns.swarmplot(data=data, x='Subscription Status', y='Age', palette='Set1')
-plt.xlabel('Status Langganan')
-plt.ylabel('Usia')
-plt.title('Hubungan Status Langganan dengan Usia Pelanggan')
-plt.show()
-```
-
-    C:\Users\LENOVO\AppData\Local\Temp\ipykernel_16976\1980800469.py:2: FutureWarning: Passing `palette` without assigning `hue` is deprecated.
-      sns.swarmplot(data=data, x='Subscription Status', y='Age', palette='Set1')
-    c:\Users\LENOVO\anaconda3\Lib\site-packages\seaborn\categorical.py:3544: UserWarning: 20.2% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
-      warnings.warn(msg, UserWarning)
-    
-
-
-    
-![png](output_21_1.png)
-```python
-plt.figure(figsize=(8, 6))
-sns.countplot(data=data, x='Subscription Status', palette='pastel')
-plt.xlabel('Status Langganan')
-plt.ylabel('Jumlah Pelanggan')
-plt.title('Jumlah Pelanggan berdasarkan Status Langganan')
-plt.show()
-```
-
-
-    
-![png](output_22_0.png)
-```python
-plt.figure(figsize=(10, 6))
-sns.histplot(data=data, x='Age', hue='Subscription Status', multiple='stack', palette='Set2')
-plt.xlabel('Usia')
-plt.ylabel('Jumlah Pelanggan')
-plt.title('Distribusi Usia untuk Setiap Status Langganan')
-plt.show()
-```
-
-
-    
-![png](output_23_0.png)
-```python
-plt.figure(figsize=(8, 6))
-data['Subscription Status'].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['lightcoral', 'lightgreen', 'lightblue'])
-plt.title('Proporsi Status Langganan')
-plt.ylabel('')
-plt.show()
-```
-
-
-    
-![png](output_24_0.png)
-```python
-plt.figure(figsize=(10, 6))
-sns.histplot(data=data, x='Purchase Amount (USD)', bins=30, color='skyblue', edgecolor='black')
-plt.xlabel('Jumlah Pembelian (USD)')
-plt.ylabel('Frekuensi')
-plt.title('Distribusi Jumlah Pembelian')
-plt.show()
-```
-
-
-    
-![png](output_25_0.png)
-```python
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=data, x='Age', y='Purchase Amount (USD)', hue='Gender', palette='Set1')
-plt.xlabel('Usia')
-plt.ylabel('Jumlah Pembelian (USD)')
-plt.title('Hubungan Usia dan Jumlah Pembelian')
-plt.show()
-```
-
-
-    
-![png](output_26_0.png)
-```python
-kelas_biru = data[(data['Purchase Amount (USD)'] >= 70) & (data['Age'] < 30)]
-kelas_merah = data[(data['Purchase Amount (USD)'] >= 30) & (data['Purchase Amount (USD)'] < 70) & (data['Age'] >= 30) & (data['Age'] < 70)]
-kelas_hijau = data[(data['Purchase Amount (USD)'] < 30) & (data['Age'] >= 70)]
-
-count_kelas_biru = len(kelas_biru)
-count_kelas_merah = len(kelas_merah)
-count_kelas_hijau = len(kelas_hijau)
-
-plt.figure(figsize=(10, 6))
-sns.barplot(x=['Cluster Rendah', 'Cluster Sedang', 'Cluster Tinggi'], y=[count_kelas_biru, count_kelas_merah, count_kelas_hijau], palette=['blue', 'red', 'green'])
-
-plt.xlabel('Cluster')
-plt.ylabel('Jumlah Data')
-
-plt.title('Jumlah Data dalam Setiap Cluster berdasarkan Purchase Amount dan Age')
-
-plt.grid(True)
-plt.show()
-```
-
-
-    
-![png](output_27_0.png)
-
-     
-
-#### 4.2. Clustering
+#### 3.4 Data preparation untuk clustering dan regresi
 Tipe data akan diubah terlebih dahulu untuk bisa memodelkan Clustering dan Regresi 
 
 ```python
@@ -967,7 +767,134 @@ data2.columns
            'Preferred Payment Method', 'Frequency of Purchases'],
           dtype='object')
 
-CLUSTERING
+### 4. Modeling
+#### 4.1 Visualisasi
+```python
+grouped_data = data.groupby('Frequency of Purchases')['Age'].mean().reset_index()
+```
+
+
+```python
+plt.figure(figsize=(10, 5))
+plt.plot(grouped_data['Frequency of Purchases'], grouped_data['Age'], marker='o', linestyle='-', color='b', label='Nilai')
+plt.xlabel('Frequency of Purchases')
+plt.ylabel('Average Age')
+plt.title('Grafik Garis Rata-Rata Usia Berdasarkan Frequency of Purchases')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Grafik%20Garis%20Rata-Rata%20Usia%20Berdasarkan%20Frequency%20of%20Purchases.png">
+
+    
+
+
+
+```python
+plt.figure(figsize=(10, 6))
+sns.lineplot(data=data, x='Frequency of Purchases', y='Previous Purchases', marker='o', ci=None)
+plt.xlabel('Frequency of Purchases')
+plt.ylabel('Previous Purchases')
+plt.title('Hubungan Frekuensi Pembelian dengan Jumlah Pembelian Sebelumnya')
+plt.xticks(rotation=45)
+plt.show()
+```
+
+    C:\Users\LENOVO\AppData\Local\Temp\ipykernel_16976\136495084.py:2: FutureWarning: 
+    
+    The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
+    
+      sns.lineplot(data=data, x='Frequency of Purchases', y='Previous Purchases', marker='o', ci=None)
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Hubungan%20Frekuensi%20Pembelian%20dengan%20Jumlah%20Pembelian%20Sebelumnya.png">
+
+    
+```python
+plt.figure(figsize=(8, 6))
+data['Frequency of Purchases'].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['lightgreen', 'lightblue', 'lightpink', 'lightyellow', 'lightcoral'])
+plt.title('Proporsi Frekuensi Pembelian')
+plt.ylabel('')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Proporsi%20Frekuensi%20Pembelian.png">
+
+```python
+plt.figure(figsize=(8, 6))
+sns.countplot(data=data, x='Frequency of Purchases', palette='pastel')
+plt.xlabel('Frekuensi Pembelian')
+plt.ylabel('Jumlah Pelanggan')
+plt.title('Jumlah Pelanggan berdasarkan Frekuensi Pembelian')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Frekuensi%20Pembelian.png">
+
+```python
+plt.figure(figsize=(10, 6))
+total_purchase = data.groupby('Frequency of Purchases')['Purchase Amount (USD)'].sum().reset_index()
+sns.barplot(data=total_purchase, x='Frequency of Purchases', y='Purchase Amount (USD)', palette='Set2')
+plt.xlabel('Frekuensi Pembelian')
+plt.ylabel('Total Pembelian (USD)')
+plt.title('Total Pembelian berdasarkan Frekuensi Pembelian')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Total%20Pembelian%20berdasarkan%20Frekuensi%20Pembelian.png">
+
+
+```python
+plt.figure(figsize=(10, 6))
+sns.swarmplot(data=data, x='Subscription Status', y='Age', palette='Set1')
+plt.xlabel('Status Langganan')
+plt.ylabel('Usia')
+plt.title('Hubungan Status Langganan dengan Usia Pelanggan')
+plt.show()
+```
+
+    C:\Users\LENOVO\AppData\Local\Temp\ipykernel_16976\1980800469.py:2: FutureWarning: Passing `palette` without assigning `hue` is deprecated.
+      sns.swarmplot(data=data, x='Subscription Status', y='Age', palette='Set1')
+    c:\Users\LENOVO\anaconda3\Lib\site-packages\seaborn\categorical.py:3544: UserWarning: 20.2% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+      warnings.warn(msg, UserWarning)
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Hubungan%20Status%20Langganan%20dengan%20Usia%20Pelanggan.png">
+
+```python
+plt.figure(figsize=(8, 6))
+sns.countplot(data=data, x='Subscription Status', palette='pastel')
+plt.xlabel('Status Langganan')
+plt.ylabel('Jumlah Pelanggan')
+plt.title('Jumlah Pelanggan berdasarkan Status Langganan')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Status%20Langganan.png">
+
+```python
+plt.figure(figsize=(10, 6))
+sns.histplot(data=data, x='Age', hue='Subscription Status', multiple='stack', palette='Set2')
+plt.xlabel('Usia')
+plt.ylabel('Jumlah Pelanggan')
+plt.title('Distribusi Usia untuk Setiap Status Langganan')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Distribusi%20Usia%20untuk%20Setiap%20Status%20Langganan.png">
+
+```python
+plt.figure(figsize=(8, 6))
+data['Subscription Status'].value_counts().plot(kind='pie', autopct='%1.1f%%', colors=['lightcoral', 'lightgreen', 'lightblue'])
+plt.title('Proporsi Status Langganan')
+plt.ylabel('')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Proporsi%20Status%20Langganan.png">
+
+```python
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=data, x='Age', y='Purchase Amount (USD)', hue='Gender', palette='Set1')
+plt.xlabel('Usia')
+plt.ylabel('Jumlah Pembelian (USD)')
+plt.title('Hubungan Usia dan Jumlah Pembelian')
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Hubungan%20usia%20dan%20jumlah%20pembelian.png">
+
+#### 4.2. Clustering
 ```python
 LE = LabelEncoder()
 data2["Frequency of Purchases"] = LE.fit_transform(data2["Frequency of Purchases"])
@@ -1148,10 +1075,8 @@ def plot_3d_clusters(y_pred,cluster_type) :
       plt.show()
 plot_3d_clusters(kmeans.labels_,"K-Means")
 ```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/K-Means.png">
 
-
-    
-![png](output_42_0.png)
     
 
 
@@ -1169,12 +1094,7 @@ plt.xlabel('number of clusters')
 plt.ylabel('wcss')
 plt.show()
 ```
-
-
-    
-![png](output_43_0.png)
-    
-
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/wcss.png">
 
 
 ```python
@@ -1186,11 +1106,8 @@ plot_3d_clusters(y_pred,"Agglomerative")
 
     c:\Users\LENOVO\anaconda3\Lib\site-packages\sklearn\cluster\_agglomerative.py:1005: FutureWarning: Attribute `affinity` was deprecated in version 1.2 and will be removed in 1.4. Use `metric` instead
       warnings.warn(
-    
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Agglomerative.png">
 
-
-    
-![png](output_44_1.png)
 
 1. Sumbu x mewakili Frequency of purchases, berkisar antara 0 hingga 6.
 2. Sumbu y mewakili Age, yang berkisar antara 20 hingga 100.
@@ -1200,7 +1117,29 @@ Dari plot tersebut, kita dapat mengamati hal-hal berikut:
 - Cluster 0 (titik biru), terdiri dari pelanggan yang sering melakukan pembelian (nilai x tinggi) dan relatif muda (nilai y rendah). Mereka juga cenderung memiliki Jumlah Pembelian yang lebih rendah (nilai z yang lebih rendah).
 - Cluster 1 (titik merah), memiliki pelanggan yang melakukan pembelian dalam jumlah sedang (nilai x sedang) dan berusia paruh baya (nilai y sedang). Mereka cenderung memiliki Jumlah Pembelian yang moderat (nilai z sedang).
 - Cluster 2 (titik hijau), terdiri dari pelanggan yang jarang melakukan pembelian (nilai x rendah) dan berusia lebih tua (nilai y tinggi). Mereka cenderung memiliki Jumlah Pembelian yang lebih tinggi (nilai z yang lebih tinggi).
-- 
+
+```python
+kelas_biru = data[(data['Purchase Amount (USD)'] >= 70) & (data['Age'] < 30)]
+kelas_merah = data[(data['Purchase Amount (USD)'] >= 30) & (data['Purchase Amount (USD)'] < 70) & (data['Age'] >= 30) & (data['Age'] < 70)]
+kelas_hijau = data[(data['Purchase Amount (USD)'] < 30) & (data['Age'] >= 70)]
+
+count_kelas_biru = len(kelas_biru)
+count_kelas_merah = len(kelas_merah)
+count_kelas_hijau = len(kelas_hijau)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=['Cluster Rendah', 'Cluster Sedang', 'Cluster Tinggi'], y=[count_kelas_biru, count_kelas_merah, count_kelas_hijau], palette=['blue', 'red', 'green'])
+
+plt.xlabel('Cluster')
+plt.ylabel('Jumlah Data')
+
+plt.title('Jumlah Data dalam Setiap Cluster berdasarkan Purchase Amount dan Age')
+
+plt.grid(True)
+plt.show()
+```
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Data%20dalam%20Setiap%20Cluster%20berdasarkan%20Purchase%20Amount%20dan%20Age.png">
+
 #### 4.3 Regression
 ##### 4.3.1 Melihat distribusi data
 ```python
@@ -1225,13 +1164,8 @@ plt.title('Distribution of Frequency of Purchases')
 
 
     Text(0.5, 1.0, 'Distribution of Frequency of Purchases')
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Distribution%20of%20Frequency%20of%20Purchases.png">
 
-
-
-
-    
-![png](output_46_2.png)
-    
 
 
 
@@ -1259,12 +1193,7 @@ plt.show()
 
 
     <Figure size 1000x800 with 0 Axes>
-
-
-
-    
-![png](output_47_1.png)
-    
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/download%20(14).png">
 
 
 
@@ -1292,11 +1221,8 @@ plt.show()
 
 
     <Figure size 1000x800 with 0 Axes>
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/download%20(15).png">
 
-
-
-    
-![png](output_48_1.png)
 ##### 4.3.2 Mendeteksi outliers pada data
 ```python
 #mendeteksi outliers
@@ -1324,10 +1250,8 @@ plt.title('Correlation Matrix')
 
 
     Text(0.5, 1.0, 'Correlation Matrix')
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Correlation%20matrix.png">
 
-
-    
-![png](output_52_1.png)
 
 ##### 4.3.4 Regression
 ```python
@@ -1444,17 +1368,8 @@ pred_model(LinearRegression,X_train,Y_train,X_test,Y_test)
     
     RMSE Testing:0.502001415221727
     RMSE Training:0.4991436000289658
-    
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/model%20linear.png">
 
-
-    
-![png](output_61_1.png)
-    
-
-
-
-    
-![png](output_61_2.png)
 ###### 4.3.4.2 Lasso Regression
 ```python
 pred_model(Lasso,X_train_scaled,Y_train,X_test_scaled,Y_test)
@@ -1474,17 +1389,8 @@ pred_model(Lasso,X_train_scaled,Y_train,X_test_scaled,Y_test)
     
     RMSE Testing:0.5005569916997599
     RMSE Training:0.49990126819417385
-    
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/model%20lasso.png">
 
-
-    
-![png](output_62_1.png)
-    
-
-
-
-    
-![png](output_62_2.png)
 ###### 4.3.4.3 Ridge Regression
 ```python
 pred_model(Ridge,X_train_scaled,Y_train,X_test_scaled,Y_test)
@@ -1506,17 +1412,8 @@ pred_model(Ridge,X_train_scaled,Y_train,X_test_scaled,Y_test)
     
     RMSE Testing:0.5020006375176838
     RMSE Training:0.49914360011959863
-    
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/model%20ridge.png">
 
-
-    
-![png](output_63_1.png)
-    
-
-
-
-    
-![png](output_63_2.png)
 ###### 4.3.4.4 ElasticNet Regression
 ```python
 pred_model(ElasticNet,X_train_scaled,Y_train,X_test_scaled,Y_test)
@@ -1536,17 +1433,8 @@ pred_model(ElasticNet,X_train_scaled,Y_train,X_test_scaled,Y_test)
     
     RMSE Testing:0.5005569916997599
     RMSE Training:0.49990126819417385
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/model%20elasticnet.png">
     
-
-
-    
-![png](output_64_1.png)
-    
-
-
-
-    
-![png](output_64_2.png)
 ###### 4.3.4.5 RandomForest Regression
 ```python
 # Membagi data
