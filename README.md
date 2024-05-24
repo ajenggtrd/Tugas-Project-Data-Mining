@@ -126,4 +126,80 @@ df.info
     3899                    Venmo              Quarterly  
     
     [3900 rows x 19 columns]>
+### 3. Data Preprocessing
+#### 3.1 Mengecek missing value
+```python
+#mengecek missing value
+data.isnull().sum()
+```
 
+
+
+
+    Customer ID                 0
+    Age                         0
+    Gender                      0
+    Item Purchased              0
+    Category                    0
+    Purchase Amount (USD)       0
+    Location                    0
+    Size                        0
+    Color                       0
+    Season                      0
+    Review Rating               0
+    Subscription Status         0
+    Payment Method              0
+    Shipping Type               0
+    Discount Applied            0
+    Promo Code Used             0
+    Previous Purchases          0
+    Preferred Payment Method    0
+    Frequency of Purchases      0
+    dtype: int64
+
+Terlihat bahwa tidak ada missing value pada data.
+#### 3.2 Menyamakan istilah yang punya arti yang sama pada Frequency of Purchases
+```python
+# Menghitung jumlah masing-masing nilai dan mengurutkan berdasarkan nilai kemunculan
+frequency_counts_sorted = data['Frequency of Purchases'].value_counts(sort=False)
+
+print(frequency_counts_sorted)
+```
+
+    Frequency of Purchases
+    Fortnightly       542
+    Weekly            539
+    Annually          572
+    Quarterly         563
+    Bi-Weekly         547
+    Monthly           553
+    Every 3 Months    584
+    Name: count, dtype: int64
+Keterangan data pada kolom Frequency of Purchases
+- Fortnightly (Setiap Dua Minggu): 542 pelanggan melakukan pembelian setiap dua minggu sekali.
+- Weekly (Mingguan): 539 pelanggan melakukan pembelian setiap minggu.
+- Annually (Tahunan): 572 pelanggan melakukan pembelian setiap tahun.
+- Quarterly (Triwulanan): 563 pelanggan melakukan pembelian setiap tiga bulan sekali.
+- Bi-Weekly (Dua Mingguan): 547 pelanggan melakukan pembelian setiap dua minggu sekali (sama seperti Fortnightly).
+- Monthly (Bulanan): 553 pelanggan melakukan pembelian setiap bulan.
+- Every 3 Months (Setiap 3 Bulan): 584 pelanggan melakukan pembelian setiap tiga bulan sekali (sama seperti Quarterly).
+Terlihat bahwa ada data yang memiliki kesamaan seperti Fortnightly dan BI-Weekly yang memiliki rentang waktu yang sama yaitu dua mingguan, serta Every 3 Months dan Quarterly yang memiliki rentang waktu yang sama yaitu tiga bulanan.
+```python
+# Menyamakan istilah 'Fortnightly' dan 'Bi-Weekly'
+data['Frequency of Purchases'] = data['Frequency of Purchases'].replace({'Bi-Weekly': 'Fortnightly'})
+data['Frequency of Purchases'] = data['Frequency of Purchases'].replace({'Every 3 Months': 'Quarterly'})
+
+# Menghitung jumlah masing-masing nilai dalam kolom 'Frequency of Purchases'
+frequency_counts = data['Frequency of Purchases'].value_counts()
+
+print(frequency_counts)
+```
+
+    Frequency of Purchases
+    Quarterly      1147
+    Fortnightly    1089
+    Annually        572
+    Monthly         553
+    Weekly          539
+    Name: count, dtype: int64
+#### 3.3 Konversi tipe data menjadi numerik
