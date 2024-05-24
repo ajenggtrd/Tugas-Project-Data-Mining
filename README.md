@@ -189,7 +189,6 @@ Terlihat bahwa ada data yang memiliki kesamaan seperti Fortnightly dan BI-Weekly
 data['Frequency of Purchases'] = data['Frequency of Purchases'].replace({'Bi-Weekly': 'Fortnightly'})
 data['Frequency of Purchases'] = data['Frequency of Purchases'].replace({'Every 3 Months': 'Quarterly'})
 
-# Menghitung jumlah masing-masing nilai dalam kolom 'Frequency of Purchases'
 frequency_counts = data['Frequency of Purchases'].value_counts()
 
 print(frequency_counts)
@@ -213,7 +212,6 @@ data2 = data.copy()
 Tipe data akan diubah terlebih dahulu untuk bisa memodelkan Clustering dan Regresi 
 
 ```python
-# Menghitung jumlah masing-masing nilai dan mengurutkan berdasarkan nilai kemunculan
 size_counts = data2['Size'].value_counts(sort=False)
 
 print(size_counts)
@@ -229,11 +227,8 @@ print(size_counts)
 ```python
 #melakukan konversi tipe data pada kolom frequency of purchases dari kategori ke numerik
 sz = {'S':0,'M':1,'L':2,'XL':3}
-
-#Melakukan konversi tipe data pada kolom 'Frequency of Purchases' dari kategori ke numerik
 data2['Size'] = data2['Size'].replace(sz)
 
-# Menghitung jumlah masing-masing nilai dalam kolom 'Frequency of Purchases'
 size_counts = data2['Size'].value_counts()
 
 print(size_counts)
@@ -1179,7 +1174,6 @@ columns=['Age', 'Gender', 'Item Purchased', 'Category', 'Purchase Amount (USD)',
        'Preferred Payment Method']
 plt.figure(figsize=(10,8))
 
-# Menentukan ukuran grid untuk subplot
 num_columns = 4
 num_rows = (len(columns) + num_columns - 1) // num_columns  # Pembulatan ke atas untuk memastikan cukup ruang
 
@@ -1207,7 +1201,6 @@ columns=['Age', 'Gender', 'Item Purchased', 'Category', 'Purchase Amount (USD)',
        'Preferred Payment Method']
 plt.figure(figsize=(10,8))
 
-# Menentukan ukuran grid untuk subplot
 num_columns = 4
 num_rows = (len(columns) + num_columns - 1) // num_columns  # Pembulatan ke atas untuk memastikan cukup ruang
 
@@ -1229,10 +1222,8 @@ plt.show()
 ##### 4.3.2 Mendeteksi outliers pada data
 ```python
 #mendeteksi outliers
-# Menghitung z-score
 z_scores = np.abs((data2 - data2.mean()) / data2.std())
 
-# Menampilkan outlier
 outliers = data2[(z_scores > 3).any(axis=1)]
 print("Outliers berdasarkan z-score:")
 print(outliers)
@@ -1258,14 +1249,11 @@ plt.title('Correlation Matrix')
 
 ##### 4.3.4 Regression
 ```python
-#Menentukan interval bins dan label
 bins = [0, 50, 80, 100]
 labels = ['30-50', '51-80', '81-100']
 
-#Menggunakan pd.cut untuk membagi data ke dalam kelas
 data2['PA Group'] = pd.cut(data2['Purchase Amount (USD)'], bins=bins, labels=labels, right=False)
 
-#Konversi kelas menjadi angka dengan LabelEncoder
 encoder = LabelEncoder()
 data2['PA Group'] = encoder.fit_transform(data2['PA Group'])
 ```
@@ -1331,7 +1319,6 @@ def pred_model(model,X_train_scaled,Y_train,X_test_scaled,Y_test):
   print(f'RMSE Testing:{np.sqrt(mean_squared_error(Y_test,y_test_pred))}')
   print(f'RMSE Training:{np.sqrt(mean_squared_error(Y_train,y_train_pred))}')
 
-  #ploting y train dgn y train pred
   plt.figure(figsize=[15,4])
   plt.subplot(1,2,2)
   plt.scatter(Y_train,y_train_pred)
@@ -1341,7 +1328,6 @@ def pred_model(model,X_train_scaled,Y_train,X_test_scaled,Y_test):
   plt.ylabel('y_train_pred')
   plt.show()
 
-  #ploting y test dengan y test pred
   plt.figure(figsize=[15,4])
   plt.subplot(1,2,2)
   plt.scatter(Y_test,y_test_pred)
@@ -1440,7 +1426,6 @@ pred_model(ElasticNet,X_train_scaled,Y_train,X_test_scaled,Y_test)
     
 ###### 4.3.4.5 RandomForest Regression
 ```python
-# Membagi data
 X_train_svr, X_test_svr, Y_train_svr, Y_test_svr = train_test_split(X, Y, test_size=0.2, random_state=42)
 
 param_grid = {
@@ -1451,7 +1436,6 @@ param_grid = {
     'max_features': ['auto', 'sqrt', 'log2']
 }
 
-# Model Random Forest
 rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_model.fit(X_train_svr, Y_train_svr)
 cross_val_scores = cross_val_score(rf_model, X, Y, cv=5, scoring='neg_mean_squared_error')
@@ -1461,7 +1445,6 @@ cross_val_rmse_scores = np.sqrt(-cross_val_scores)
 y_train_pred = rf_model.predict(X_train_svr)
 y_test_pred = rf_model.predict(X_test_svr)
 
-# MetriK evaluasi
 mse_train = mean_squared_error(Y_train_svr, y_train_pred)
 mse_test = mean_squared_error(Y_test_svr, y_test_pred)
 mae_train = mean_absolute_error(Y_train_svr, y_train_pred)
@@ -1512,8 +1495,6 @@ stacking_model.fit(X_train_svr, Y_train_svr)
 y_train_pred_stack = stacking_model.predict(X_train_svr)
 y_test_pred_stack = stacking_model.predict(X_test_svr)
 
-# MetriK evaluasi
-# MetriK evaluasi untuk model stacking
 mse_train_stack = mean_squared_error(Y_train_svr, y_train_pred_stack)
 mse_test_stack = mean_squared_error(Y_test_svr, y_test_pred_stack)
 mae_train_stack = mean_absolute_error(Y_train_svr, y_train_pred_stack)
@@ -1546,26 +1527,20 @@ print(f'RMSE Testing Stacking: {rmse_test_stack}')
     
 ###### 4.3.4.7 Logistic Regression
 ```python
-
-# Tentukan interval bins dan label
 bins = [0, 50, 80, 100]
 labels = ['30-50', '51-80', '81-100']
 
-# Menggunakan pd.cut untuk membagi data ke dalam kelas
 data2['PA Group'] = pd.cut(data2['Purchase Amount (USD)'], bins=bins, labels=labels, right=False)
 
-# Konversi kelas menjadi angka dengan LabelEncoder
 encoder = LabelEncoder()
 data2['PA Group'] = encoder.fit_transform(data2['PA Group'])
 
-# Pisahkan data menjadi fitur (X) dan target (Y)
 X = data2.drop(['Purchase Amount (USD)','PA Group'],axis=1)
 Y = data2['PA Group']
 
 # Bagi data menjadi training dan testing set
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
 
-# Definisikan fungsi model
 def model(classifier):
     classifier.fit(X_train, Y_train)
     prediction = classifier.predict(X_test)
@@ -1581,7 +1556,6 @@ def model(classifier):
     print("Recall: {:.2%}".format(recall))
     print("F1 Score: {:.2%}".format(f1))
 
-# Gunakan Logistic Regression untuk klasifikasi
 classifier_lr = LogisticRegression(random_state=0, C=10, penalty='l2', solver='lbfgs', max_iter=500, multi_class='ovr')
 model(classifier_lr)
 
@@ -1599,13 +1573,11 @@ model(classifier_lr)
 Dari beberapa model diatas, terlihat bahwa model Logistic Regression lebih baik dalam prediksi data dibandingkan model lainnya. Akan dievaluasi apakah hasil dari Logistic Regression tersebut sudah cukup baik atau belum menggunakan Cross Validation Score.
 ##### 4.3.5 Evaluasi Model
 ```python
-# Definisikan model Logistic Regression
 classifier_lr = LogisticRegression(random_state=0, C=10, penalty='l2', solver='lbfgs', max_iter=500, multi_class='ovr')
 
 # Hitung cross-validation score
 cv_scores = cross_val_score(classifier_lr, X_train, Y_train, cv=5, scoring='accuracy')
 
-# Tampilkan hasil cross-validation score
 print("Cross-Validation Scores:", cv_scores)
 print("Mean Cross-Validation Score:", cv_scores.mean())
 ```
