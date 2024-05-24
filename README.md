@@ -827,7 +827,7 @@ plt.title('Jumlah Pelanggan berdasarkan Frekuensi Pembelian')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Frekuensi%20Pembelian.png">
-Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Jumlah Pelanggan".
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Jumlah Pelanggan". Pada diagram tersebut menunjukkan bahwa mayoritas pelanggan berbelanja dalam rentang waktu 3 bulan sekali.
 
 ```python
 plt.figure(figsize=(10, 6))
@@ -839,7 +839,7 @@ plt.title('Total Pembelian berdasarkan Frekuensi Pembelian')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Total%20Pembelian%20berdasarkan%20Frekuensi%20Pembelian.png">
-Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Total Pembelian (USD))".
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Frekuensi Pembelian berdasarkan Total Pembelian (USD))". Dikarenakan berdasarkan diagram dan plot sebelumnya telah menunjukkan bahwa mayoritas pelanggan berbelanja dalam rentang waktu 3 bulan sekali, jelas bahwa total pembelian terbanyak ada di rentang waktu 3 bulan.
 
 ```python
 plt.figure(figsize=(10, 6))
@@ -865,7 +865,8 @@ plt.title('Jumlah Pelanggan berdasarkan Status Langganan')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Jumlah%20Pelanggan%20berdasarkan%20Status%20Langganan.png">
-Terdapat kesalahan pada judul plot yang seharusnya adalah "Status Langganan berdasarkan Jumlah Pelanggan".
+Terdapat kesalahan pada judul plot yang seharusnya adalah "Status Langganan berdasarkan Jumlah Pelanggan". Diagram diatas menunjukkan bahwa lebih banyak pelanggan yang tidak melakukan subscribe dibanding yang subscribe
+
 ```python
 plt.figure(figsize=(10, 6))
 sns.histplot(data=data, x='Age', hue='Subscription Status', multiple='stack', palette='Set2')
@@ -884,6 +885,7 @@ plt.ylabel('')
 plt.show()
 ```
 <img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Proporsi%20Status%20Langganan.png">
+Diagram diatas menunjukkan jumlah pelanggan yang melakukan subscribe dan tidak melakukan subscribe dalam persen.
 
 ```python
 plt.figure(figsize=(10, 6))
