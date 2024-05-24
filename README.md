@@ -227,7 +227,8 @@ plt.grid(True)
 plt.show()
 
 ```
-![png](output_15_0.png)
+<img src="https://github.com/ajenggtrd/Tugas-Project-Data-Mining/blob/main/Grafik%20Garis%20Rata-Rata%20Usia%20Berdasarkan%20Frequency%20of%20Purchases.png">
+
     
 
 
