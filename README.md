@@ -51,10 +51,10 @@ Pola pembelian disebabkan oleh berbagai faktor, berikut adalah penjelasan dari s
 - Preferred Payment Method (Metode Pembayaran yang Disukai): Metode pembayaran yang disukai dapat memberikan indikasi tentang kenyamanan dan kebiasaan belanja pelanggan.
 - Frequency of Purchases (Frekuensi Pembelian): Frekuensi pembelian yang dilakukan oleh pelanggan dalam kategori mingguan, bulanan, dan tahunan.
 ```python
-df = pd.read_csv("D:\\Beban\\python\\shopping_trends.csv")
+data = pd.read_csv("D:\\Beban\\python\\shopping_trends.csv")
 ```
 ```python
-df.info
+data.info
 ```
 
 
