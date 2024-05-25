@@ -1248,19 +1248,10 @@ plt.title('Correlation Matrix')
 
 
 ##### 4.3.4 Regression
-```python
-bins = [0, 50, 80, 100]
-labels = ['30-50', '51-80', '81-100']
-
-data2['PA Group'] = pd.cut(data2['Purchase Amount (USD)'], bins=bins, labels=labels, right=False)
-
-encoder = LabelEncoder()
-data2['PA Group'] = encoder.fit_transform(data2['PA Group'])
-```
 Membagi data training dan data test
 ```python
-X = data2.drop(['Purchase Amount (USD)','PA Group'],axis=1)
-Y = data2['PA Group']
+X = data2.drop(['Purchase Amount (USD)'],axis=1)
+Y = data2['Purchase Amount (USD)']
 ```
 
 
