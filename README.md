@@ -33,6 +33,7 @@ import scipy.cluster.hierarchy as sch
 ### 2. Data Understanding
 Pola pembelian disebabkan oleh berbagai faktor, berikut adalah penjelasan dari setiap faktor yang mungkin memengaruhi pola pembelian berdasarkan data yang diberikan:
 
+- Customer ID (ID Pelanggan): Memberikan informasi tentang ID Pelanggan.
 - Age (Usia): Usia pelanggan bisa mempengaruhi perilaku pembelian. Pelanggan yang lebih tua atau lebih muda mungkin memiliki frekuensi pembelian yang berbeda.
 - Gender (Jenis Kelamin): Jenis kelamin bisa mempengaruhi kebiasaan belanja. Misalnya, produk tertentu mungkin lebih menarik bagi satu jenis kelamin dibanding yang lain
 - Item Purchased (Item yg dibeli): Jenis barang yang sering dibeli oleh pelanggan dapat memberikan indikasi tentang kebiasaan pembelian mereka.
